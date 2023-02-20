@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class GroceryController {
 
-    @GetMapping("/groceries")
+    @GetMapping("/")
     public String showGroceryList( Model model ) {
         model.addAttribute( "helloworld", "Hello World!" );
         return "groceries";
