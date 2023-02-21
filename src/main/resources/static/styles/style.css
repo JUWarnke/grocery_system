@@ -72,6 +72,18 @@ a:active {
     cursor: pointer;
 }
 
+.submit-button:focus {
+    background-color: #5b9bb2;
+    border-color: transparent;
+}
+
+.submit-button:active {
+    background-color: #5b9bb2;
+    border-color: transparent;
+}
+
+
+
 
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
     background-color: white;
