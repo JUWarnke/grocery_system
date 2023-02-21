@@ -1,6 +1,6 @@
 package de.eisteemarmela.grocery_system.controller.thymeleafController;
 
-import de.eisteemarmela.grocery_system.model.repositories.GroceryRepository;
+import de.eisteemarmela.grocery_system.model.services.GroceryService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,15 +8,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class GroceryController {
 
-    GroceryRepository groceryRepository;
+    GroceryService groceryService;
 
-    public GroceryController( GroceryRepository groceryRepository) {
-        this.groceryRepository = groceryRepository;
+    public GroceryController( GroceryService groceryService) {
+        this.groceryService = groceryService;
+    }
+
+    @GetMapping("/")
+    public String showIndex() {
+        return "index";
     }
 
     @GetMapping( "/groceries" )
     public String showGroceryList( Model model ) {
-        model.addAttribute( "groceries",  groceryRepository.findAll() );
+        model.addAttribute( "groceries",  groceryService.getAllGroceries() );
         return "groceries";
     }
 
