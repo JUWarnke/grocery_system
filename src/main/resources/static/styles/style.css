@@ -21,7 +21,7 @@ body {
     text-decoration: none;
 }
 
-.header_link:link{
+.header_link:link {
     text-decoration: none;
 }
 
@@ -52,8 +52,26 @@ a:hover {
 }
 
 a:active {
-text-decoration: none;
+    text-decoration: none;
 }
+
+.form-container {
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.submit-button {
+    background-color: darkslategray;
+    border-color: transparent;
+}
+
+.submit-button:hover {
+    background-color: #5b9bb2;
+    border-color: transparent;
+    cursor: pointer;
+}
+
 
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
     background-color: white;
