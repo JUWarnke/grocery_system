@@ -24,37 +24,30 @@ public class GroceryController {
         this.storeService = storeService;
     }
 
-    @GetMapping("/")
-    public String showIndex() {
-        return "index";
-    }
-
     @GetMapping( "/groceries" )
     public String showGroceryList( Model model ) {
         model.addAttribute( "groceries",  groceryService.getAllGroceries() );
         model.addAttribute( "stores", storeService.getAllStores() );
         model.addAttribute( "brands", brandService.getAllBrands() );
-        model.addAttribute( "addGroceryData", new GroceryData() );
+        model.addAttribute( "grocery", new Grocery() );
         return "groceries";
     }
 
-    // save groceryData from form
-    @PostMapping( "/addGrocery" )
-    public String saveGrocery( @ModelAttribute("addGroceryData") GroceryData groceryData ) {
-
-        Grocery grocery = new Grocery();
-        grocery.setName( groceryData.getName() );
-        grocery.setBrand( brandService.getBrandByName( groceryData.getBrand() ) );
-        grocery.setStore( storeService.getStoreByName( groceryData.getStore() ) );
-        grocery.setPrice( groceryData.getPrice() );
-        grocery.setQuantity( groceryData.getQuantity() );
-        grocery.setLastBought( groceryData.getLastBought() );
+    @PostMapping( "groceries/add" )
+    public String saveGrocery( @ModelAttribute Grocery grocery ) {
 
         groceryService.saveGrocery( grocery );
 
         return "redirect:/groceries";
     }
 
-    // delete grocery by id
+    // delete grocery
+    @GetMapping( "groceries/delete/{id}" )
+    public String deleteGrocery( @PathVariable long id ) {
+
+        groceryService.deleteGroceryById( id );
+
+        return "redirect:/groceries";
+    }
 
 }

@@ -67,7 +67,7 @@ a:active {
 }
 
 .edit-button {
-    background-color: darkslategray;
+    background-color: #588f8f;
     border-color: transparent;
 }
 
@@ -89,7 +89,7 @@ a:active {
 }
 
 .edit-button:focus {
-    background-color: #5b9bb2;
+    background-color: #406969;
     border-color: transparent;
 }
 
@@ -99,7 +99,7 @@ a:active {
 }
 
 .edit-button:active {
-    background-color: #5b9bb2;
+    background-color: #406969;
     border-color: transparent;
 }
 
@@ -107,7 +107,7 @@ a:active {
 
 
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
-    background-color: white;
+    background-color: #5b9bb2;
 }
 
 .groceryTable {

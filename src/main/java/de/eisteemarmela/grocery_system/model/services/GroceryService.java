@@ -27,4 +27,11 @@ public class GroceryService {
         return groceryRepository.save( grocery );
     }
 
+    public void deleteGroceryById( double id ) {
+        groceryRepository.deleteById( ( long ) id );
+    }
+
+    public void deleteGroceryByName( String groceryName ) {
+        groceryRepository.deleteGroceryByName( groceryName );
+    }
 }

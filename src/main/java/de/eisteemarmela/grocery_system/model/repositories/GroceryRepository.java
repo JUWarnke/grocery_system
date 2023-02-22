@@ -9,5 +9,5 @@ import org.springframework.stereotype.Repository;
 public interface GroceryRepository extends JpaRepository< Grocery, Long > {
 
 
-
+    void deleteGroceryByName( String groceryName );
 }

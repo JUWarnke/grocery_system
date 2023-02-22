@@ -10,8 +10,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
+@RequestMapping( "/brands" )
 public class BrandController {
 
     BrandService brandService;
@@ -22,7 +24,7 @@ public class BrandController {
         this.storeService = storeService;
     }
 
-    @GetMapping( "/brands" )
+    @GetMapping(  )
     public String showGroceryList( Model model ) {
         model.addAttribute( "brands",  brandService.getAllBrands() );
         model.addAttribute( "stores", storeService.getAllStores() );
@@ -30,7 +32,7 @@ public class BrandController {
         return "brands";
     }
 
-    @PostMapping( "/addBrand" )
+    @PostMapping(  )
     public String saveBrand( @ModelAttribute("addBrand") Brand brand ) {
         brandService.saveBrand( brand );
         return "redirect:/brands";
