@@ -14,12 +14,12 @@ public class StoreService {
     public StoreService( StoreRepository storeRepository ) {
         this.storeRepository = storeRepository;
     }
-
     public List< Store > getAllStores() {
         return storeRepository.findAll();
     }
-
-    public Store getStoreByName( String store ) {
-        return storeRepository.findStoreByName( store );
+    public void saveStore( Store store ) {
+        storeRepository.save( store );
     }
+
+
 }
