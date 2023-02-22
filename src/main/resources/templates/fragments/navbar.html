@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="header">
+  <div>
+    <img th:src="@{images/logos/header_logo.png}">
+  </div>
+
+  <div class="nav">
+    <a class="header_link" th:href="@{/groceries}"> Groceries </a>
+    <a class="header_link" th:href="@{/brands}"> Brands </a>
+    <a class="header_link" th:href="@{/stores}"> Stores </a>
+  </div>
+
+</div>
+
+</body>
+</html>

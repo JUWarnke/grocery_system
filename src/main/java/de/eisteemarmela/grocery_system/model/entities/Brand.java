@@ -20,16 +20,11 @@ public class Brand {
     @Column( name = "name" )
     private String name;
 
-    @ManyToOne
-    @JoinColumn( name = "store_id" )
-    private Store storeId;
-
     @Override
     public String toString() {
         return "Brand{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
-                ", storeId=" + storeId +
                 '}';
     }
 }
