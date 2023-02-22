@@ -1,4 +1,4 @@
-package de.eisteemarmela.grocery_system.model.entities;
+package de.eisteemarmela.grocery_system.model.entities.dataHolder;
 
 import java.time.LocalDate;
 import java.util.Date;

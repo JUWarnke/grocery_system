@@ -23,4 +23,7 @@ public class BrandService {
         return brandRepository.findBrandByName( name );
     }
 
+    public void saveBrand( Brand brand ) {
+        brandRepository.save( brand );
+    }
 }

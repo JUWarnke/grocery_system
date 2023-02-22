@@ -1,7 +1,7 @@
 package de.eisteemarmela.grocery_system.controller.thymeleafController;
 
 import de.eisteemarmela.grocery_system.model.entities.Grocery;
-import de.eisteemarmela.grocery_system.model.entities.GroceryData;
+import de.eisteemarmela.grocery_system.model.entities.dataHolder.GroceryData;
 import de.eisteemarmela.grocery_system.model.services.BrandService;
 import de.eisteemarmela.grocery_system.model.services.GroceryService;
 import de.eisteemarmela.grocery_system.model.services.StoreService;
@@ -39,7 +39,7 @@ public class GroceryController {
     }
 
     // save groceryData from form
-    @PostMapping( "/add" )
+    @PostMapping( "/addGrocery" )
     public String saveGrocery( @ModelAttribute("addGroceryData") GroceryData groceryData ) {
 
         Grocery grocery = new Grocery();
@@ -54,5 +54,7 @@ public class GroceryController {
 
         return "redirect:/groceries";
     }
+
+    // delete grocery by id
 
 }

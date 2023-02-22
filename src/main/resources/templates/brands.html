@@ -27,7 +27,29 @@
 <div class="container">
 
     <div class="text-center pt-3">
-        <h2> Brands </h2>
+        <h2> Groceries </h2>
+    </div>
+
+</div>
+
+<div class="container">
+
+    <div class="form-container">
+
+        <form th:action="@{/addBrand}" th:object="${addBrand}"  method="post">
+            <div class="form-group">
+                <label for="brandName">Grocery Name</label>
+                <input required type="text" th:field="*{name}"  class="form-control" id="brandName" placeholder="Enter name of Brand">
+            </div>
+            <div class="form-group">
+                <label for="storeName">Store name</label>
+                <select required class="form-control" th:field="*{storeId}" id="storeName" placeholder="Enter store name">
+                    <option th:each="store : ${stores}" th:value="${store.id}" th:text="${store.getName()}"></option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary submit-button">Add Brand</button>
+        </form>
+
     </div>
 
 </div>

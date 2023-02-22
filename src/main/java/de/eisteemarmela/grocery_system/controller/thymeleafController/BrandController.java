@@ -1,24 +1,39 @@
 package de.eisteemarmela.grocery_system.controller.thymeleafController;
 
+import de.eisteemarmela.grocery_system.model.entities.Brand;
 import de.eisteemarmela.grocery_system.model.repositories.BrandRepository;
 import de.eisteemarmela.grocery_system.model.repositories.GroceryRepository;
+import de.eisteemarmela.grocery_system.model.services.BrandService;
+import de.eisteemarmela.grocery_system.model.services.StoreService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class BrandController {
 
-    BrandRepository brandRepository;
+    BrandService brandService;
+    StoreService storeService;
 
-    public BrandController( BrandRepository brandRepository) {
-        this.brandRepository = brandRepository;
+    public BrandController( BrandService brandService, StoreService storeService ) {
+        this.brandService = brandService;
+        this.storeService = storeService;
     }
 
     @GetMapping( "/brands" )
     public String showGroceryList( Model model ) {
-        model.addAttribute( "brands",  brandRepository.findAll() );
+        model.addAttribute( "brands",  brandService.getAllBrands() );
+        model.addAttribute( "stores", storeService.getAllStores() );
+        model.addAttribute( "addBrand", new Brand() );
         return "brands";
+    }
+
+    @PostMapping( "/addBrand" )
+    public String saveBrand( @ModelAttribute("addBrand") Brand brand ) {
+        brandService.saveBrand( brand );
+        return "redirect:/brands";
     }
 
 }

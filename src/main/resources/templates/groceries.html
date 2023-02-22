@@ -36,7 +36,7 @@
 
     <div class="form-container">
 
-        <form th:action="@{/add}" th:object="${addGroceryData}"  method="post">
+        <form th:action="@{/addGrocery}" th:object="${addGroceryData}"  method="post">
             <div class="form-group">
                 <label for="groceryName">Grocery Name</label>
                 <input required type="text" th:field="*{name}"  class="form-control" id="groceryName" placeholder="Enter name of Grocery">
@@ -71,34 +71,38 @@
 
     </div>
 
-    <table class="table table-striped table-hover groceryTable">
-        <thead>
-        <tr class="text-center">
-            <th> Grocery</th>
-            <th> Brand</th>
-            <th> Price</th>
-            <th> Quantity</th>
-            <th> Store</th>
-            <th> last bought</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:if="${groceries.isEmpty()}">
-            <td colspan="2"> No Groceries Available</td>
-        </tr>
-        <tr th:each="grocery : ${groceries}" class="text-center">
-            <td><span th:text="${grocery.getName()}"> name </span></td>
-            <td><span th:text="${grocery.getBrand().getName()}"> brand_name </span></td>
-            <td><span th:text="${grocery.getPrice()} + '€'"> price </span></td>
-            <td><span th:text="${grocery.getQuantity()}"> quantity </span></td>
-            <td><span th:text="${grocery.getStore().getName()}"> Store </span></td>
-            <td><span th:text="${grocery.getLastBought()}"> last_bought </span></td>
-
-        </tr>
-        </tbody>
-    </table>
-
 </div>
+
+<table class="table table-striped table-hover groceryTable">
+    <thead>
+    <tr class="text-center">
+        <th> Grocery</th>
+        <th> Brand</th>
+        <th> Price</th>
+        <th> Quantity</th>
+        <th> Store</th>
+        <th> last bought</th>
+        <th> Edit</th>
+        <th> Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:if="${groceries.isEmpty()}">
+        <td colspan="2"> No Groceries Available</td>
+    </tr>
+    <tr th:each="grocery : ${groceries}" class="text-center">
+        <td><span th:text="${grocery.getName()}"> name </span></td>
+        <td><span th:text="${grocery.getBrand().getName()}"> brand_name </span></td>
+        <td><span th:text="${grocery.getPrice()} + '€'"> price </span></td>
+        <td><span th:text="${grocery.getQuantity()}"> quantity </span></td>
+        <td><span th:text="${grocery.getStore().getName()}"> Store </span></td>
+        <td><span th:text="${grocery.getLastBought()}"> last_bought </span></td>
+        <td><button class="btn btn-primary edit-button">Edit</button></td>
+        <td><button class="btn btn-primary edit-button">Delete</button></td>
+
+    </tr>
+    </tbody>
+</table>
 
 </body>
 
