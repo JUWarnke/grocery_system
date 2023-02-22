@@ -7,4 +7,5 @@ public interface StoreRepository extends JpaRepository< Store, Long > {
 
     Store findStoreById( Long id);
 
+    Store findStoreByName( String store );
 }

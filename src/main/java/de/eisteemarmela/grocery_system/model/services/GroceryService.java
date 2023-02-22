@@ -23,7 +23,7 @@ public class GroceryService {
         return groceryRepository.findById( id ).orElse( null );
     }
 
-    public Grocery save( Grocery grocery ) {
+    public Grocery saveGrocery( Grocery grocery ) {
         return groceryRepository.save( grocery );
     }
 
