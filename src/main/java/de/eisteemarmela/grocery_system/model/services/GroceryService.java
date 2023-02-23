@@ -19,12 +19,12 @@ public class GroceryService {
         return groceryRepository.findAll();
     }
 
-    public Grocery findById( Long id ) {
+    public Grocery getGroceryById( Long id ) {
         return groceryRepository.findById( id ).orElse( null );
     }
 
-    public Grocery saveGrocery( Grocery grocery ) {
-        return groceryRepository.save( grocery );
+    public void saveGrocery( Grocery grocery ) {
+        groceryRepository.save( grocery );
     }
 
     public void deleteGroceryById( double id ) {
