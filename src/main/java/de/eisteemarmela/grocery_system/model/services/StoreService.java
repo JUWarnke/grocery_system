@@ -25,4 +25,8 @@ public class StoreService {
     public Store getStoreById( Long storeId ) {
         return storeRepository.findById( storeId ).orElse( null );
     }
+
+    public void deleteStoreById( Long id ) {
+        storeRepository.deleteById( id );
+    }
 }

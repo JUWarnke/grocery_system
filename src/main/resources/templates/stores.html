@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<div th:replace="~{fragments/navbar}"></div>
+<div th:replace="~{fragments/navbarFragment}"></div>
 
 <div class="container">
 
@@ -30,7 +30,7 @@
                 <label for="storeName">Store Name</label>
                 <input required type="text" th:field="*{name}"  class="form-control" id="storeName" placeholder="Enter name of Store">
             </div>
-            <button type="submit" class="btn btn-primary submit-button">Add Brand</button>
+            <button type="submit" class="btn btn-primary submit-button">Add Store</button>
         </form>
 
     </div>
@@ -43,6 +43,8 @@
     <tr class="text-center">
         <th> Store ID</th>
         <th> Name </th>
+        <th> Edit </th>
+        <th> Delete </th>
     </tr>
     </thead>
     <tbody>
@@ -52,9 +54,89 @@
     <tr th:each="store : ${stores}" class="text-center">
         <td><span th:text="${store.getId()}"> store_id </span></td>
         <td><span th:text="${store.getName()}"> store_name </span></td>
+        <td>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary edit-button" data-toggle="modal"
+                    th:attr="data-target='#editModalCenter' + *{store.getId()}">
+                Edit
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" th:id="*{'editModalCenter' + store.getId()}"
+                 tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+
+                <form th:action="@{stores/edit}" method="post">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalCenterTitle" th:text="'Edit ' + ${store.getName()}"></h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form th:object="${store}">
+                                    <div class="form-group">
+                                        <label for="storeIdEdit">Store ID</label>
+                                        <input type="number" readonly th:value="*{getId()}" name="storeId" contenteditable="false" class="form-control"
+                                               id="storeIdEdit">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="storeNameEdit">Grocery Name</label>
+                                        <input type="text" th:value="*{getName()}" name="storeName" class="form-control"
+                                               id="storeNameEdit">
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-primary edit-button">Save changes</button>
+                                <button type="button" class="btn btn-secondary edit-button" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+
+
+            </div>
+        </td>
+
+        <td>
+            <!-- Button trigger modal -->
+            <button type="button" class="btn btn-primary edit-button" data-toggle="modal"
+                    th:attr="data-target='#exampleModalCenter' + *{store.getId()}">
+                Delete
+            </button>
+
+            <!-- Modal -->
+            <div class="modal fade" th:id="*{'exampleModalCenter' + store.getId()}" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">Warning</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <p th:text=" 'Do you want to delete (' + ${store.getName()} + ')?'"></p>
+                        </div>
+                        <div class="modal-footer">
+                            <form th:action="@{stores/delete/{id}(id = ${store.getId()})}">
+                                <button type="submit" class="btn btn-primary">Delete</button>
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </td>
     </tr>
     </tbody>
 </table>
+
+<div th:replace="~{fragments/cssScriptFragment}"></div>
 
 </body>
 </html>
