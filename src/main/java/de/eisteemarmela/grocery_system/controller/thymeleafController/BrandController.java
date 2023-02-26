@@ -5,13 +5,9 @@ import de.eisteemarmela.grocery_system.model.services.BrandService;
 import de.eisteemarmela.grocery_system.model.services.StoreService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
-@RequestMapping(  )
 public class BrandController {
 
     BrandService brandService;
@@ -30,10 +26,28 @@ public class BrandController {
         return "brands";
     }
 
-    @PostMapping( "/brands/add" )
+    @GetMapping( "/brands/delete/{id}" )
+    public String deleteBrand( @PathVariable("id") Long id ) {
+        brandService.deleteBrandById( id );
+        return "redirect:/brands";
+    }
+
+    @PostMapping( "brands/add" )
     public String saveBrand( @ModelAttribute("addBrand") Brand brand ) {
         brandService.saveBrand( brand );
         return "redirect:/brands";
+    }
+
+    @PostMapping("brands/edit")
+    public String editBrand( @RequestParam("brandId") Long id,
+                             @RequestParam("brandName") String name){
+
+        Brand brand = brandService.getBrandById( id );
+        brand.setName( name );
+        brandService.saveBrand( brand );
+
+        return "redirect:/brands";
+
     }
 
 }
