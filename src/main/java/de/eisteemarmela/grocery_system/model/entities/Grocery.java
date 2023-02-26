@@ -19,14 +19,14 @@ public class Grocery {
     @Column(updatable = false, nullable = false)
     private Long id;
 
-    @Column(name = "name", unique = true)
+    @Column(name = "name", nullable = false)
     private String name;
 
     @ManyToOne(cascade = CascadeType.MERGE)
-    @JoinColumn(name = "brand_id")
+    @JoinColumn(name = "brand_id", nullable = false)
     private Brand brand;
 
-    @Column(name = "price")
+    @Column(name = "price", nullable = false)
     private Double price;
 
     @Column(name = "last_bought")
@@ -37,7 +37,7 @@ public class Grocery {
     private Store store;
 
     @Column(name = "quantity")
-    private Double quantity;
+    private String quantity;
 
     @Override
     public String toString() {
@@ -49,7 +49,7 @@ public class Grocery {
                     price: %.2f,
                     lastBought: %s,
                     store: %s,
-                    quantity: %.2f
+                    quantity: %s
                 }""", id, name, brand.getName(), price, lastBought, store.getName(), quantity);
     }
 

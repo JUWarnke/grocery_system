@@ -6,10 +6,9 @@ import de.eisteemarmela.grocery_system.model.services.GroceryService;
 import de.eisteemarmela.grocery_system.model.services.StoreService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+
+import java.time.LocalDate;
 
 @Controller
 public class GroceryController {
@@ -43,11 +42,35 @@ public class GroceryController {
         return "redirect:/groceries";
     }
 
+    @PostMapping( "groceries/edit" )
+    public String editGrocery( @RequestParam("groceryId") Long id,
+                               @RequestParam("groceryName") String name,
+                               @RequestParam("groceryBrandId") Long brandId,
+                               @RequestParam("groceryPrice") Double price,
+                               @RequestParam("groceryLastBought") LocalDate lastBought,
+                               @RequestParam("groceryStoreId") Long storeId,
+                               @RequestParam("groceryQuantity") String quantity ) {
+
+
+
+        Grocery grocery = groceryService.getGroceryById( id );
+        grocery.setName( name );
+        grocery.setBrand( brandService.getBrandById( brandId ) );
+        grocery.setPrice( price );
+        grocery.setLastBought( lastBought );
+        grocery.setStore( storeService.getStoreById( storeId ) );
+        grocery.setQuantity( quantity );
+
+        groceryService.saveGrocery( grocery );
+
+        return "redirect:/groceries";
+    }
+
     // delete grocery
     @GetMapping( "groceries/delete/{id}" )
-    public String deleteGrocery( @PathVariable long id ) {
+    public String deleteGrocery( @PathVariable("id") Long groceryId ) {
 
-        groceryService.deleteGroceryById( id );
+        groceryService.deleteGroceryById( groceryId );
 
         return "redirect:/groceries";
     }

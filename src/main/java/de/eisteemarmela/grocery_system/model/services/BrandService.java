@@ -19,11 +19,11 @@ public class BrandService {
         return brandRepository.findAll();
     }
 
-    public Brand getBrandByName( String name ) {
-        return brandRepository.findBrandByName( name );
-    }
-
     public void saveBrand( Brand brand ) {
         brandRepository.save( brand );
+    }
+
+    public Brand getBrandById( Long brandId ) {
+        return brandRepository.findById( brandId ).orElse( null );
     }
 }

@@ -10,7 +10,7 @@ body {
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    box-shadow: white 0px 0px 2px;
+    box-shadow: white 0 0 2px;
 }
 
 .header_link {
@@ -103,7 +103,14 @@ a:active {
     border-color: transparent;
 }
 
+.small-info-text {
+    color: white;
+}
 
+.modal-style {
+    background-color: #233f49;
+    color: white;
+}
 
 
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
