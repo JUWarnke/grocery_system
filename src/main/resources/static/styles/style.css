@@ -21,6 +21,16 @@ body {
     text-decoration: none;
 }
 
+.collapse-and-search-container {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
 .header_link:link {
     text-decoration: none;
 }
@@ -33,6 +43,7 @@ body {
 
 .header_link:active {
     text-decoration: none;
+    color: #5b9bb2;
 }
 
 a {
@@ -55,51 +66,36 @@ a:active {
     text-decoration: none;
 }
 
-.form-container {
-    margin-left: auto;
-    margin-right: auto;
-    width: 50%;
+.search-bar {
+    width: 30%;
 }
 
-.submit-button {
+.form-container {
+
+    margin: auto;
+
+}
+
+.my-button {
     background-color: darkslategray;
     border-color: transparent;
+    color: white;
 }
 
-.edit-button {
-    background-color: #588f8f;
-    border-color: transparent;
-}
-
-.submit-button:hover {
+.my-button:hover {
     background-color: #5b9bb2;
     border-color: transparent;
     cursor: pointer;
+    color: white;
 }
 
-.edit-button:hover {
-    background-color: #5b9bb2;
-    border-color: transparent;
-    cursor: pointer;
-}
-
-.submit-button:focus {
+.my-button:focus {
     background-color: #5b9bb2;
     border-color: transparent;
 }
 
-.edit-button:focus {
-    background-color: #406969;
-    border-color: transparent;
-}
-
-.submit-button:active {
+.my-button:active {
     background-color: #5b9bb2;
-    border-color: transparent;
-}
-
-.edit-button:active {
-    background-color: #406969;
     border-color: transparent;
 }
 
@@ -109,14 +105,20 @@ a:active {
 
 
 .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
-    background-color: #5b9bb2;
+    background-color: #496e80;
+    color: white;
+
 }
 
-.groceryTable {
+.center-text {
+    text-align: center;
+}
+
+.my-table {
     width: 80%;
     padding-top: 32px;
     margin-top: 32px;
-    background-color: darkslategray;
+    background-color: #3b6060;
     margin-left: auto;
     margin-right: auto;
     color: white;
