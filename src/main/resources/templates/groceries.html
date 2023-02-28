@@ -31,7 +31,10 @@
             New Grocery
         </button>
         <form class="form-inline">
-            <input class="form-control mr-sm-2 search-bar" type="search" placeholder="Search Grocery" aria-label="Search">
+            <input class="form-control" list="datalistOptions" id="exampleDataList" placeholder="Type to search...">
+            <datalist id="datalistOptions">
+                <option th:each="grocery : ${groceries}" th:text="${grocery.getName()}"></option>
+            </datalist>
             <button class="btn my-2 my-sm-0 my-button" type="submit">Search</button>
         </form>
     </div>
@@ -127,7 +130,13 @@
                     <div class="modal-dialog modal-dialog-centered" role="document">
                         <div class="modal-content">
                             <div class="modal-header">
-                                <h5 class="modal-title" id="exampleModalCenterTitle" th:text="'Edit ' + ${grocery.getName()}"></h5>
+                                <h5
+                                        class="modal-title"
+                                        id="exampleModalCenterTitle"
+                                        th:text="'Edit Grocery: ' + '{' +  *{grocery.getName()} +  '}' "
+                                >
+
+                                </h5>
                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -210,7 +219,7 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                            <p th:text=" 'Do you want to delete (' + ${grocery.getName()} + ')?'"></p>
+                            <p th:text=" 'Do you want to delete Grocery: ' + ${grocery.getName()} + '?'"></p>
                         </div>
                         <div class="modal-footer">
                             <form th:action="@{groceries/delete/{id}(id = ${grocery.getId()})}">

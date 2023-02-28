@@ -110,8 +110,33 @@ a:active {
 
 }
 
+.modal-title {
+    color: black;
+}
+
+.modal-header {
+    color: black;
+}
+
+.modal-body {
+    color: black;
+}
+
+.modal-footer {
+    color: black;
+}
+
+.modal-content {
+    background-color: white;
+    color: black;
+}
+
 .center-text {
     text-align: center;
+}
+
+.label {
+    color: black;
 }
 
 .my-table {
